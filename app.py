@@ -6,7 +6,7 @@ from functools import wraps
 import sqlite3
 import joblib
 import warnings
-
+import os
 
 # ============================================================
 # FLASK APPLICATION
@@ -1276,34 +1276,21 @@ if __name__ == "__main__":
     print("Flask Application")
     print("=" * 60)
 
-    print(
-        f"Financial records : {len(financial_df)}"
-    )
+    print(f"Financial records : {len(financial_df)}")
+    print(f"Monthly records   : {len(monthly_df)}")
+    print(f"Forecast records  : {len(forecast_df)}")
+    print(f"Anomaly records   : {len(anomaly_results_df)}")
 
-    print(
-        f"Monthly records   : {len(monthly_df)}"
-    )
-
-    print(
-        f"Forecast records  : {len(forecast_df)}"
-    )
-
-    print(
-        f"Anomaly records   : {len(anomaly_results_df)}"
-    )
+    port = int(os.environ.get("PORT", 5000))
 
     print("=" * 60)
-    print(
-        "Application running at:"
-    )
-    print(
-        "http://127.0.0.1:5000"
-    )
+    print(f"PORT from Render : {os.environ.get('PORT')}")
+    print(f"Binding to       : 0.0.0.0:{port}")
     print("=" * 60)
     print()
 
     app.run(
-        host="127.0.0.1",
-        port=5000,
+        host="0.0.0.0",
+        port=port,
         debug=False
     )
