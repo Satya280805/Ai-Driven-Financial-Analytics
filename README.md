@@ -942,38 +942,6 @@ Future improvements can include:
 
 ---
 
-# 👥 Project Team
-
-This is a **team-based major project**.
-
-| Name | Responsibility |
-| -------- | ------------------ |
-| **Kalavalapalli Venkata Sesha Satyanarayana*                 | **`Project Lead & Coordinator`** |
-| **Kandala Vineetha**                | **`Data Analysis & Research`** |
-| **Katta Udaya Lakshmi**                 | **`Machine Learning & Model Evaluation`** |
-| **Kukkala Dileep Babu**                 | **`Business Intelligence & Visualization`** |
-| **Pinishetty Srinivas**                 | **`Application Development & Testing`** |
-
----
-
-# 🎓 Academic Information
-
-**Project Type:** Final-Year Project
-
-**Domain:** Data Science, Machine Learning, Financial Analytics
-
-**Enterprise Context:** SAP S/4HANA FICO
-
-**Primary Technologies:** Python, Machine Learning, Power BI, Flask
-
-**Institution:** `Malla Reddy Engineering College`
-
-**Department:** Computer Science and Engineering - Data Science
-
-**Academic Year:** `2026 - 2027`
-
----
-
 # 📁 Important Files
 
 | File | Purpose |
@@ -1020,6 +988,38 @@ Decision Support
 ```
 
 The project combines **enterprise financial concepts, Data Science, Machine Learning, Business Intelligence, and web development** into an end-to-end financial analytics solution.
+
+---
+
+# 🎓 Academic Information
+
+**Project Type:** Final-Year Project
+
+**Domain:** Data Science, Machine Learning, Financial Analytics
+
+**Enterprise Context:** SAP S/4HANA FICO
+
+**Primary Technologies:** Python, Machine Learning, Power BI, Flask
+
+**Institution:** `Malla Reddy Engineering College`
+
+**Department:** Computer Science and Engineering - Data Science
+
+**Academic Year:** `2026 - 2027`
+
+---
+
+# 👥 Project Team
+
+This is a **team-based major project**.
+
+| Name | Responsibility |
+| -------- | ------------------ |
+| **Kalavalapalli Venkata Sesha Satyanarayana**                 | **`Project Lead & Coordinator`** |
+| **Kandala Vineetha**                | **`Data Analysis & Research`** |
+| **Katta Udaya Lakshmi**                 | **`Machine Learning & Model Evaluation`** |
+| **Kukkala Dileep Babu**                 | **`Business Intelligence & Visualization`** |
+| **Pinishetty Srinivas**                 | **`Application Development & Testing`** |
 
 ---
 
