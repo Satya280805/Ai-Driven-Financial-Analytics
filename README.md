@@ -948,11 +948,11 @@ This is a **team-based major project**.
 
 | Name | Responsibility |
 | -------- | ------------------ |
-| Kalavalapalli Venkata Sesha Satyanarayana                 | `Project Lead & Coordinator` |
-| Kandala Vineetha                | `Data Analysis & Research` |
-| Katta Udaya Lakshmi                 | `Machine Learning & Model Evaluation` |
-| Kukkala Dileep Babu                 | `Business Intelligence & Visualization` |
-| Pinishetty Srinivas                 | `Application Development & Testing` |
+| **Kalavalapalli Venkata Sesha Satyanarayana*                 | **`Project Lead & Coordinator`** |
+| **Kandala Vineetha**                | **`Data Analysis & Research`** |
+| **Katta Udaya Lakshmi**                 | **`Machine Learning & Model Evaluation`** |
+| **Kukkala Dileep Babu**                 | **`Business Intelligence & Visualization`** |
+| **Pinishetty Srinivas**                 | **`Application Development & Testing`** |
 
 ---
 
