@@ -1,0 +1,363 @@
+{% extends "base.html" %}
+
+{% block title %}
+Dashboard | FinAnalytics
+{% endblock %}
+
+{% block page_name %}
+Dashboard
+{% endblock %}
+
+
+{% block content %}
+
+<!-- ================================================
+     PAGE HEADER
+     ================================================ -->
+
+<div class="page-header">
+
+    <div>
+
+        <h1 class="page-title">
+            Financial Dashboard
+        </h1>
+
+        <p class="page-description">
+            Overview of enterprise financial performance,
+            spending patterns and AI-driven insights.
+        </p>
+
+    </div>
+
+    <div class="page-action">
+        Financial Period: 2021 – 2025
+    </div>
+
+</div>
+
+
+
+<!-- ================================================
+     KPI CARDS
+     ================================================ -->
+
+<div class="kpi-grid">
+
+
+    <!-- Transactions -->
+
+    <div class="kpi-card dashboard-kpi" data-kpi="totalTransactions">
+
+        <div class="kpi-top">
+
+            <span class="kpi-label">
+                TOTAL TRANSACTIONS
+            </span>
+
+            <div class="kpi-icon">
+                #
+            </div>
+
+        </div>
+
+        <div class="kpi-value">
+            {{ total_transactions | default("9,802") }}
+        </div>
+
+        <div class="kpi-footer">
+            Financial transaction records
+        </div>
+
+    </div>
+
+
+
+    <!-- Revenue -->
+
+    <div class="kpi-card dashboard-kpi" data-kpi="totalRevenue">
+
+        <div class="kpi-top">
+
+            <span class="kpi-label">
+                TOTAL REVENUE
+            </span>
+
+            <div class="kpi-icon">
+                ₹
+            </div>
+
+        </div>
+
+        <div class="kpi-value">
+            {{ total_revenue | default("₹993.38M") }}
+        </div>
+
+        <div class="kpi-footer">
+            Recorded revenue
+        </div>
+
+    </div>
+
+
+
+    <!-- Expense -->
+
+    <div class="kpi-card dashboard-kpi" data-kpi="totalExpense">
+
+        <div class="kpi-top">
+
+            <span class="kpi-label">
+                TOTAL EXPENSE
+            </span>
+
+            <div class="kpi-icon">
+                ↘
+            </div>
+
+        </div>
+
+        <div class="kpi-value">
+            {{ total_expense | default("₹1.64B") }}
+        </div>
+
+        <div class="kpi-footer">
+            Recorded expenditure
+        </div>
+
+    </div>
+
+
+
+    <!-- Anomalies -->
+
+    <div class="kpi-card dashboard-kpi" data-kpi="potentialAnomalies">
+
+        <div class="kpi-top">
+
+            <span class="kpi-label">
+                POTENTIAL ANOMALIES
+            </span>
+
+            <div class="kpi-icon">
+                ⚠
+            </div>
+
+        </div>
+
+        <div class="kpi-value">
+            {{ potential_anomalies | default("197") }}
+        </div>
+
+        <div class="kpi-footer">
+            Identified by anomaly detection
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<!-- ================================================
+     REVENUE VS EXPENSE
+     ================================================ -->
+
+<div class="chart-card">
+
+    <div class="chart-card-header">
+
+        <div>
+
+            <div class="chart-title">
+                Revenue vs Expense
+            </div>
+
+            <div class="chart-subtitle">
+                Monthly financial trend
+            </div>
+
+        </div>
+
+    </div>
+
+    <div id="revenueExpenseChart"
+         class="chart-container">
+
+    </div>
+
+</div>
+
+
+
+<!-- ================================================
+     TWO CHARTS
+     ================================================ -->
+
+<div class="grid-2">
+
+
+    <!-- Department -->
+
+    <div class="chart-card">
+
+        <div class="chart-card-header">
+
+            <div>
+
+                <div class="chart-title">
+                    Department-wise Expense
+                </div>
+
+                <div class="chart-subtitle">
+                    Expense distribution across departments
+                </div>
+
+            </div>
+
+        </div>
+
+        <div id="departmentChart"
+             class="chart-container">
+
+        </div>
+
+    </div>
+
+
+
+    <!-- Budget -->
+
+    <div class="chart-card">
+
+        <div class="chart-card-header">
+
+            <div>
+
+                <div class="chart-title">
+                    Actual Expense vs Budget
+                </div>
+
+                <div class="chart-subtitle">
+                    Annual budget utilization
+                </div>
+
+            </div>
+
+        </div>
+
+        <div id="budgetChart"
+             class="chart-container">
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<!-- ================================================
+     INSIGHTS
+     ================================================ -->
+
+<div class="page-header"
+     style="margin-top:10px;">
+
+    <div>
+
+        <h2 class="page-title"
+            style="font-size:20px;">
+
+            Key Insights
+
+        </h2>
+
+        <p class="page-description">
+
+            Important observations from the financial dataset.
+
+        </p>
+
+    </div>
+
+</div>
+
+
+<div class="grid-3">
+
+
+    <div class="insight-card">
+
+        <div class="insight-icon">
+            📈
+        </div>
+
+        <div class="insight-title">
+            Expense Growth
+        </div>
+
+        <div class="insight-text">
+
+            Expense increased consistently across the
+            five-year period, indicating a growing
+            expenditure trend.
+
+        </div>
+
+    </div>
+
+
+    <div class="insight-card">
+
+        <div class="insight-icon">
+            💰
+        </div>
+
+        <div class="insight-title">
+            Budget Utilization
+        </div>
+
+        <div class="insight-text">
+
+            Several years show expense levels close to
+            or above the allocated budget, highlighting
+            areas requiring financial monitoring.
+
+        </div>
+
+    </div>
+
+
+    <div class="insight-card">
+
+        <div class="insight-icon">
+            🤖
+        </div>
+
+        <div class="insight-title">
+            AI-Based Detection
+        </div>
+
+        <div class="insight-text">
+
+            Machine learning is used to identify
+            statistically unusual financial transaction
+            patterns.
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}
+
+
+
+{% block scripts %}
+
+<script src="{{ url_for('static', filename='js/dashboard.js') }}">
+</script>
+
+{% endblock %}

@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>
+        {% block title %}
+        AI-Driven Financial Analytics
+        {% endblock %}
+    </title>
+
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/sap-fico-logo.png') }}">
+
+    <script>
+        document.documentElement.dataset.theme = localStorage.getItem("finanalytics-theme") || "light";
+    </script>
+
+    <!-- Main CSS -->
+    <link rel="stylesheet"
+            href="{{ url_for('static', filename='css/style.css', v='20260914') }}">
+
+    <!-- Plotly -->
+    <script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
+
+</head>
+
+
+<body>
+
+<div class="app-container">
+
+
+    <!-- ================================================= -->
+    <!-- SIDEBAR -->
+    <!-- ================================================= -->
+
+    <aside class="sidebar">
+
+        <div class="brand">
+
+            <img class="brand-logo" src="{{ url_for('static', filename='images/sap-fico-logo.png') }}" alt="SAP S/4HANA FICO">
+
+            <div class="brand-text">
+
+                <h2>
+                    FinAnalytics
+                </h2>
+
+                <span>
+                    Intelligence workspace
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <div class="sidebar-divider"></div>
+
+
+        <nav class="navigation">
+
+            <p class="nav-heading">
+                MAIN
+            </p>
+
+
+            <a href="{{ url_for('index') }}"
+               class="nav-item {% if request.endpoint == 'index' %}active{% endif %}">
+
+                <span class="nav-icon">
+                    ◉
+                </span>
+
+                <span>
+                    Dashboard
+                </span>
+
+            </a>
+
+
+            <a href="{{ url_for('analytics') }}"
+               class="nav-item {% if request.endpoint == 'analytics' %}active{% endif %}">
+
+                <span class="nav-icon">
+                    ▥
+                </span>
+
+                <span>
+                    Financial Analytics
+                </span>
+
+            </a>
+
+
+            <p class="nav-heading nav-heading-space">
+                AI & INSIGHTS
+            </p>
+
+
+            <a href="{{ url_for('forecast') }}"
+               class="nav-item {% if request.endpoint == 'forecast' %}active{% endif %}">
+
+                <span class="nav-icon">
+                    ↗
+                </span>
+
+                <span>
+                    Expense Forecast
+                </span>
+
+            </a>
+
+
+            <a href="{{ url_for('anomalies') }}"
+               class="nav-item {% if request.endpoint == 'anomalies' %}active{% endif %}">
+
+                <span class="nav-icon">
+                    ⚠
+                </span>
+
+                <span>
+                    Anomaly Detection
+                </span>
+
+            </a>
+
+        </nav>
+
+        <div class="sidebar-note">
+            <span class="eyebrow">WORKSPACE</span>
+            <strong>FY 2021 - 2025</strong>
+            <small>9,802 records connected</small>
+        </div>
+
+
+        <!-- Sidebar bottom -->
+
+        <div class="sidebar-bottom">
+
+            <div class="sap-badge">
+
+                <img class="sap-mini-logo" src="{{ url_for('static', filename='images/sap-fico-logo.png') }}" alt="SAP S/4HANA FICO">
+
+                <div>
+
+                    <strong>
+                        SAP S/4HANA
+                    </strong>
+
+                    <small>
+                        FICO Data Context
+                    </small>
+
+                </div>
+
+            </div>
+
+            <div class="system-status">
+
+                <span class="status-dot"></span>
+
+                System Online
+
+            </div>
+
+        </div>
+
+    </aside>
+
+
+
+    <!-- ================================================= -->
+    <!-- MAIN CONTENT -->
+    <!-- ================================================= -->
+
+    <main class="main-content">
+
+
+        <!-- TOP BAR -->
+
+        <header class="topbar">
+
+            <button class="mobile-menu"
+                    type="button"
+                    aria-label="Open navigation"
+                    aria-expanded="false">
+                ☰
+            </button>
+
+            <div class="breadcrumb">
+
+                <span>
+                    Financial Analytics
+                </span>
+
+                <span class="breadcrumb-separator">
+                    /
+                </span>
+
+                <strong>
+                    {% block page_name %}
+                    Dashboard
+                    {% endblock %}
+                </strong>
+
+            </div>
+
+
+            <div class="topbar-right">
+
+                <button class="theme-toggle" type="button" aria-label="Switch theme" title="Switch theme">
+                    <span class="theme-icon">☼</span>
+                    <span class="theme-label">Light</span>
+                </button>
+
+                <div class="data-status">
+
+                    <span class="status-dot"></span>
+
+                    Data Connected
+
+                </div>
+
+
+                <a class="profile" href="{{ url_for('logout') if session.get('user') else url_for('login') }}">
+
+                    <div class="profile-avatar">
+                        DS
+                    </div>
+
+                    <div class="profile-info">
+
+                        <strong>{{ session.get('user', {}).get('name', 'Data Science') }}</strong>
+
+                        <span>{{ 'Sign out' if session.get('user') else 'Sign in' }}</span>
+
+                    </div>
+
+                </a>
+
+            </div>
+
+        </header>
+
+
+
+        <!-- PAGE CONTENT -->
+
+        <section class="page-content">
+
+            {% block content %}
+
+            {% endblock %}
+
+        </section>
+
+
+
+        <!-- FOOTER -->
+
+        <footer class="footer">
+
+            <span>
+                AI-Driven Financial Analytics using SAP S/4HANA (FICO)
+            </span>
+
+            <span>
+                Data Science • Machine Learning • Financial Analytics
+            </span>
+
+        </footer>
+
+
+    </main>
+
+</div>
+
+
+<!-- Main JavaScript -->
+<script src="{{ url_for('static', filename='js/main.js', v='20260914') }}"></script>
+
+
+{% block scripts %}
+
+{% endblock %}
+
+
+</body>
+
+</html>

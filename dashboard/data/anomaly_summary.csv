@@ -1,0 +1,3 @@
+Final_Anomaly,Transaction_Count,Total_Amount,Average_Amount,Anomaly_Type
+0,9605,2282427755.64,237629.12604268608,Normal
+1,197,355422288.76,1804174.0546192892,Potential Anomaly

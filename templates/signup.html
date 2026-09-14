@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create account | FinAnalytics</title>
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/sap-fico-logo.png') }}">
+    <script>document.documentElement.dataset.theme = localStorage.getItem("finanalytics-theme") || "light";</script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css', v='20260914') }}">
+</head>
+<body class="auth-page">
+    <main class="auth-layout">
+        <section class="auth-intro">
+            <a class="auth-brand" href="{{ url_for('index') }}"><img class="auth-logo" src="{{ url_for('static', filename='images/sap-fico-logo.png') }}" alt="SAP S/4HANA FICO"><span>FinAnalytics</span></a>
+            <div class="auth-intro-copy">
+                <span class="eyebrow">A CLEARER START</span>
+                <h1>Make financial decisions with room to think.</h1>
+                <p>Set up a focused analytics workspace for your team, forecasts, and controls.</p>
+            </div>
+            <div class="auth-source">Built for finance and data teams</div>
+        </section>
+        <section class="auth-panel">
+            <button class="theme-toggle auth-theme" type="button" aria-label="Switch theme"><span class="theme-icon">☼</span><span class="theme-label">Light</span></button>
+            <div class="auth-form-wrap">
+                <span class="eyebrow">CREATE ACCOUNT</span>
+                <h2>Start your workspace</h2>
+                <p class="auth-muted">Create a local demo analyst account.</p>
+                {% if success %}<div class="form-success">{{ success }} <a href="{{ url_for('login') }}">Sign in now</a></div>{% endif %}
+                {% if error %}<div class="form-error">{{ error }}</div>{% endif %}
+                <form method="post" class="auth-form">
+                    <label for="name">Full name</label>
+                    <input id="name" name="name" type="text" autocomplete="name" required placeholder="Alex Morgan">
+                    <label for="email">Work email</label>
+                    <input id="email" name="email" type="email" autocomplete="email" required placeholder="you@company.com">
+                    <label for="password">Password</label>
+                    <input id="password" name="password" type="password" autocomplete="new-password" minlength="6" required placeholder="At least 6 characters">
+                    <button class="primary-button" type="submit">Create account <span>-></span></button>
+                </form>
+                <p class="auth-switch">Already have an account? <a href="{{ url_for('login') }}">Sign in</a></p>
+            </div>
+        </section>
+    </main>
+    <script src="{{ url_for('static', filename='js/main.js', v='20260914') }}"></script>
+</body>
+</html>

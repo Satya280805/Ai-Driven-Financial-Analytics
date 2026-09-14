@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign in | FinAnalytics</title>
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/sap-fico-logo.png') }}">
+    <script>document.documentElement.dataset.theme = localStorage.getItem("finanalytics-theme") || "light";</script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css', v='20260914') }}">
+</head>
+<body class="auth-page">
+    <main class="auth-layout">
+        <section class="auth-intro">
+            <a class="auth-brand" href="{{ url_for('index') }}"><img class="auth-logo" src="{{ url_for('static', filename='images/sap-fico-logo.png') }}" alt="SAP S/4HANA FICO"><span>FinAnalytics</span></a>
+            <div class="auth-intro-copy">
+                <span class="eyebrow">FINANCIAL INTELLIGENCE</span>
+                <h1>See the signal inside every number.</h1>
+                <p>Bring performance, forecasts, and risk indicators into one calm operating view.</p>
+            </div>
+            <div class="auth-source">SAP S/4HANA FICO data context</div>
+        </section>
+        <section class="auth-panel">
+            <button class="theme-toggle auth-theme" type="button" aria-label="Switch theme"><span class="theme-icon">☼</span><span class="theme-label">Light</span></button>
+            <div class="auth-form-wrap">
+                <span class="eyebrow">WELCOME BACK</span>
+                <h2>Sign in to your workspace</h2>
+                <p class="auth-muted">Use your analyst account to continue.</p>
+                {% if request.args.get('created') %}<div class="form-success">Account created. Sign in to continue.</div>{% endif %}
+                {% if error %}<div class="form-error">{{ error }}</div>{% endif %}
+                <form method="post" class="auth-form">
+                    <label for="email">Work email</label>
+                    <input id="email" name="email" type="email" autocomplete="email" required placeholder="you@company.com">
+                    <label for="password">Password</label>
+                    <input id="password" name="password" type="password" autocomplete="current-password" required placeholder="Enter your password">
+                    <button class="primary-button" type="submit">Sign in <span>-></span></button>
+                </form>
+                <p class="auth-switch">New to FinAnalytics? <a href="{{ url_for('signup') }}">Create an account</a></p>
+            </div>
+        </section>
+    </main>
+    <script src="{{ url_for('static', filename='js/main.js', v='20260914') }}"></script>
+</body>
+</html>

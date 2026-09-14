@@ -1,0 +1,220 @@
+{% extends "base.html" %}
+
+{% block title %}Financial Analytics{% endblock %}
+
+{% block page_name %}Financial Analytics{% endblock %}
+
+{% block content %}
+
+<div class="page-header">
+    <div>
+        <h1>Financial Analytics</h1>
+        <p>Analyze financial performance, expenses, profitability and payment activity.</p>
+    </div>
+</div>
+
+<div class="info-strip">
+    <span class="info-mark">i</span>
+    <div><strong>How to read this view</strong><p>Compare revenue, expense, margin, department concentration, and settlement status across the five-year financial record.</p></div>
+</div>
+
+
+<!-- =====================================================
+     KPI CARDS
+===================================================== -->
+
+<div class="kpi-grid">
+
+    <div class="kpi-card">
+        <div class="kpi-icon">₹</div>
+        <div class="kpi-content">
+            <span class="kpi-label">Total Revenue</span>
+            <h2 id="analyticsRevenue">Loading...</h2>
+            <span class="kpi-subtitle">2021–2025</span>
+        </div>
+    </div>
+
+    <div class="kpi-card">
+        <div class="kpi-icon">₹</div>
+        <div class="kpi-content">
+            <span class="kpi-label">Total Expense</span>
+            <h2 id="analyticsExpense">Loading...</h2>
+            <span class="kpi-subtitle">2021–2025</span>
+        </div>
+    </div>
+
+    <div class="kpi-card">
+        <div class="kpi-icon">₹</div>
+        <div class="kpi-content">
+            <span class="kpi-label">Total Profit</span>
+            <h2 id="analyticsProfit">Loading...</h2>
+            <span class="kpi-subtitle">Revenue profitability</span>
+        </div>
+    </div>
+
+    <div class="kpi-card">
+        <div class="kpi-icon">%</div>
+        <div class="kpi-content">
+            <span class="kpi-label">Profit Margin</span>
+            <h2 id="analyticsMargin">Loading...</h2>
+            <span class="kpi-subtitle">Overall margin</span>
+        </div>
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     YEARLY PERFORMANCE
+===================================================== -->
+
+<div class="chart-card">
+
+    <div class="chart-header">
+        <div>
+            <h2>Year-wise Financial Performance</h2>
+            <p>Comparison of revenue and expense from 2021 to 2025.</p>
+        </div>
+    </div>
+
+    <div id="yearlyPerformanceChart" class="chart-container"></div>
+
+</div>
+
+
+<!-- =====================================================
+     DEPARTMENT + CATEGORY
+===================================================== -->
+
+<div class="chart-grid">
+
+    <div class="chart-card">
+
+        <div class="chart-header">
+            <div>
+                <h2>Department-wise Expense</h2>
+                <p>Expense distribution across departments.</p>
+            </div>
+        </div>
+
+        <div id="departmentExpenseChart" class="chart-container"></div>
+
+    </div>
+
+
+    <div class="chart-card">
+
+        <div class="chart-header">
+            <div>
+                <h2>Account Category Expense</h2>
+                <p>Expense distribution by account category.</p>
+            </div>
+        </div>
+
+        <div id="categoryExpenseChart" class="chart-container"></div>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     PAYMENT STATUS
+===================================================== -->
+
+<div class="chart-card">
+
+    <div class="chart-header">
+        <div>
+            <h2>Payment Status Distribution</h2>
+            <p>Distribution of financial transactions by payment status.</p>
+        </div>
+    </div>
+
+    <div id="paymentStatusChart" class="chart-container"></div>
+
+</div>
+
+
+<!-- =====================================================
+     PROFIT ANALYSIS
+===================================================== -->
+
+<div class="chart-card">
+
+    <div class="chart-header">
+        <div>
+            <h2>Profit and Profit Margin</h2>
+            <p>Year-wise profitability analysis.</p>
+        </div>
+    </div>
+
+    <div id="profitAnalysisChart" class="chart-container"></div>
+
+</div>
+
+
+<!-- =====================================================
+     KEY INSIGHTS
+===================================================== -->
+
+<div class="section-title">
+    <h2>Key Financial Insights</h2>
+</div>
+
+<div class="insight-grid">
+
+    <div class="insight-card">
+        <div class="insight-icon">📈</div>
+        <div>
+            <h3>Expense Growth</h3>
+            <p>
+                Total annual expenses show an increasing trend across
+                the five-year analysis period.
+            </p>
+        </div>
+    </div>
+
+    <div class="insight-card">
+        <div class="insight-icon">💰</div>
+        <div>
+            <h3>Profitability</h3>
+            <p>
+                Revenue and profit trends provide an overview of the
+                organization's financial performance.
+            </p>
+        </div>
+    </div>
+
+    <div class="insight-card">
+        <div class="insight-icon">🏢</div>
+        <div>
+            <h3>Department Spending</h3>
+            <p>
+                Department-level analysis helps identify areas with
+                relatively higher expenditure.
+            </p>
+        </div>
+    </div>
+
+    <div class="insight-card">
+        <div class="insight-icon">💳</div>
+        <div>
+            <h3>Payment Activity</h3>
+            <p>
+                Payment-status analysis provides visibility into
+                transaction settlement patterns.
+            </p>
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}
+
+
+{% block scripts %}
+
+<script src="{{ url_for('static', filename='js/analytics.js') }}"></script>
+
+{% endblock %}

@@ -1,0 +1,362 @@
+{% extends "base.html" %}
+
+{% block title %}
+Anomaly Detection | FinAnalytics
+{% endblock %}
+
+{% block page_name %}
+Anomaly Detection
+{% endblock %}
+
+
+{% block content %}
+
+<div class="page-header">
+
+    <div>
+
+        <h1 class="page-title">
+            Anomaly Detection
+        </h1>
+
+        <p class="page-description">
+            Identification of unusual financial transaction
+            patterns using Machine Learning.
+        </p>
+
+    </div>
+
+    <div class="page-action">
+        Isolation Forest
+    </div>
+
+</div>
+
+<div class="info-strip">
+    <span class="info-mark">i</span>
+    <div><strong>Review, do not accuse</strong><p>Potential anomalies are unusual patterns flagged by Isolation Forest. Use the matrix and transaction records to decide what deserves investigation.</p></div>
+</div>
+
+
+
+<!-- =====================================================
+     KPI CARDS
+     ===================================================== -->
+
+<div class="kpi-grid">
+
+
+    <div class="kpi-card">
+
+        <div class="kpi-top">
+
+            <span class="kpi-label">
+                TOTAL RECORDS
+            </span>
+
+            <div class="kpi-icon">
+                #
+            </div>
+
+        </div>
+
+        <div class="kpi-value">
+            <span id="totalTransactions">9,802</span>
+        </div>
+
+        <div class="kpi-footer">
+            Transactions analyzed
+        </div>
+
+    </div>
+
+
+    <div class="kpi-card">
+
+        <div class="kpi-top">
+
+            <span class="kpi-label">
+                NORMAL
+            </span>
+
+            <div class="kpi-icon">
+                ✓
+            </div>
+
+        </div>
+
+        <div class="kpi-value">
+            <span id="normalTransactions">9,605</span>
+        </div>
+
+        <div class="kpi-footer">
+            Normal model predictions
+        </div>
+
+    </div>
+
+
+    <div class="kpi-card">
+
+        <div class="kpi-top">
+
+            <span class="kpi-label">
+                POTENTIAL ANOMALIES
+            </span>
+
+            <div class="kpi-icon">
+                ⚠
+            </div>
+
+        </div>
+
+        <div class="kpi-value">
+            <span id="potentialAnomalies">197</span>
+        </div>
+
+        <div class="kpi-footer">
+            Transactions flagged
+        </div>
+
+    </div>
+
+
+    <div class="kpi-card">
+
+        <div class="kpi-top">
+
+            <span class="kpi-label">
+                F1 SCORE
+            </span>
+
+            <div class="kpi-icon">
+                F1
+            </div>
+
+        </div>
+
+        <div class="kpi-value">
+            <span id="metricF1Score">36.73%</span>
+        </div>
+
+        <div class="kpi-footer">
+            Reference-label evaluation
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<!-- =====================================================
+     CHART + METHODOLOGY
+     ===================================================== -->
+
+<div class="grid-2">
+
+
+    <div class="chart-card">
+
+        <div class="chart-card-header">
+
+            <div>
+
+                <div class="chart-title">
+                    Anomaly Distribution
+                </div>
+
+                <div class="chart-subtitle">
+                    Normal versus potential anomaly predictions
+                </div>
+
+            </div>
+
+        </div>
+
+        <div id="anomalyDistributionChart"
+             class="chart-container">
+        </div>
+
+    </div>
+
+
+
+    <div class="insight-card">
+
+        <div class="insight-icon">
+            🤖
+        </div>
+
+        <div class="insight-title">
+            Isolation Forest
+        </div>
+
+        <div class="insight-text">
+
+            Isolation Forest is an unsupervised machine
+            learning algorithm designed to identify
+            observations that are different from the
+            majority of the dataset.
+
+            <br><br>
+
+            The model uses:
+
+            <br><br>
+
+            • Amount<br>
+            • Budget<br>
+            • Quantity<br>
+            • Tax Amount<br>
+            • Budget Variance<br>
+            • Budget Utilization
+
+            <br><br>
+
+            A detected anomaly represents an unusual
+            financial pattern and should be investigated
+            further. It should not automatically be
+            interpreted as fraud.
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<!-- =====================================================
+     MODEL METRICS
+     ===================================================== -->
+
+<div class="chart-card">
+
+    <div class="chart-card-header">
+
+        <div>
+
+            <div class="chart-title">
+                Model Evaluation
+            </div>
+
+            <div class="chart-subtitle">
+                Comparison against reference anomaly labels
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="grid-3">
+
+
+        <div class="insight-card">
+
+            <div class="insight-title">
+                Precision
+            </div>
+
+            <div class="kpi-value">
+                <span id="precisionScore">36.55%</span>
+            </div>
+
+        </div>
+
+
+        <div class="insight-card">
+
+            <div class="insight-title">
+                Recall
+            </div>
+
+            <div class="kpi-value">
+                <span id="recallScore">36.92%</span>
+            </div>
+
+        </div>
+
+
+        <div class="insight-card">
+
+            <div class="insight-title">
+                F1 Score
+            </div>
+
+            <div class="kpi-value">
+                <span id="f1Score">36.73%</span>
+            </div>
+
+        </div>
+
+
+    </div>
+
+</div>
+
+
+
+<!-- =====================================================
+     CONFUSION MATRIX
+     ===================================================== -->
+
+<div class="chart-card">
+
+    <div class="chart-card-header">
+
+        <div>
+
+            <div class="chart-title">
+                Confusion Matrix
+            </div>
+
+            <div class="chart-subtitle">
+                Model predictions compared with reference labels
+            </div>
+
+        </div>
+
+    </div>
+
+    <div id="confusionMatrixChart"
+         class="chart-container">
+    </div>
+
+    <div class="matrix-table-wrap">
+        <table class="matrix-table" aria-label="Confusion matrix values">
+            <thead>
+                <tr>
+                    <th>Actual / Predicted</th>
+                    <th>Normal</th>
+                    <th>Potential anomaly</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th>Normal</th>
+                    <td id="trueNegative">-</td>
+                    <td id="falsePositive">-</td>
+                </tr>
+                <tr>
+                    <th>Potential anomaly</th>
+                    <td id="falseNegative">-</td>
+                    <td id="truePositive">-</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div>
+
+{% endblock %}
+
+
+{% block scripts %}
+
+<script src="{{ url_for('static',
+filename='js/anomalies.js') }}">
+</script>
+
+{% endblock %}

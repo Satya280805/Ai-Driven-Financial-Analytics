@@ -1,0 +1,385 @@
+{% extends "base.html" %}
+
+{% block title %}Expense Forecast{% endblock %}
+
+{% block page_name %}Expense Forecast{% endblock %}
+
+{% block content %}
+
+<!-- =====================================================
+     PAGE HEADER
+===================================================== -->
+
+<div class="page-header">
+    <div>
+        <h1>Expense Forecast</h1>
+        <p>
+            Machine learning based expense forecasting for 2026.
+        </p>
+    </div>
+</div>
+
+<div class="info-strip">
+    <span class="info-mark">i</span>
+    <div><strong>Planning signal</strong><p>The 2026 forecast is a budgeting reference built from historical monthly expense patterns and the selected tested model.</p></div>
+</div>
+
+<div class="chart-card prediction-card">
+    <div class="chart-header">
+        <div>
+            <span class="eyebrow">SCENARIO LAB</span>
+            <h2>Test a transaction outcome</h2>
+            <p>Model a proposed transaction before approval and see how it compares with learned patterns.</p>
+        </div>
+        <span class="model-badge"><span class="status-dot"></span> Live model</span>
+    </div>
+    <div class="scenario-presets" aria-label="Example scenarios">
+        <span>Try an example:</span>
+        <button type="button" class="preset-button" data-amount="250000" data-budget="300000" data-quantity="2" data-tax="25000">Within budget</button>
+        <button type="button" class="preset-button" data-amount="520000" data-budget="400000" data-quantity="1" data-tax="52000">Over budget</button>
+    </div>
+    <div class="prediction-layout">
+    <form id="predictionForm" class="prediction-form">
+        <label><span>Transaction amount <small>INR</small></span><input name="amount" type="number" min="1" step="0.01" required placeholder="250,000"><small class="field-help">Total proposed spend</small></label>
+        <label><span>Approved budget <small>INR</small></span><input name="budget" type="number" min="1" step="0.01" required placeholder="300,000"><small class="field-help">Available budget</small></label>
+        <label><span>Quantity <small>units</small></span><input name="quantity" type="number" min="1" step="0.01" value="1" required><small class="field-help">Items or units</small></label>
+        <label><span>Tax amount <small>INR</small></span><input name="tax_amount" type="number" min="0" step="0.01" value="0"><small class="field-help">Tax included in amount</small></label>
+        <button class="primary-button" type="submit">Predict outcome <span>-></span></button>
+    </form>
+    <div id="predictionResult" class="prediction-result" aria-live="polite">
+        <span class="result-placeholder"><span class="result-icon">+</span><span><strong>Ready for a scenario</strong><small>Enter the transaction details above to generate a model outcome.</small></span></span>
+    </div>
+    </div>
+</div>
+
+
+<!-- =====================================================
+     FORECAST KPI CARDS
+===================================================== -->
+
+<div class="kpi-grid">
+
+    <div class="kpi-card">
+        <div class="kpi-icon">₹</div>
+
+        <div class="kpi-content">
+            <span class="kpi-label">2026 Forecast</span>
+            <h2 id="forecastTotal">Loading...</h2>
+            <span class="kpi-subtitle">
+                Total projected expense
+            </span>
+        </div>
+    </div>
+
+
+    <div class="kpi-card">
+        <div class="kpi-icon">₹</div>
+
+        <div class="kpi-content">
+            <span class="kpi-label">Average Monthly</span>
+            <h2 id="forecastAverage">Loading...</h2>
+            <span class="kpi-subtitle">
+                Average projected expense
+            </span>
+        </div>
+    </div>
+
+
+    <div class="kpi-card">
+        <div class="kpi-icon">%</div>
+
+        <div class="kpi-content">
+            <span class="kpi-label">Expected Growth</span>
+            <h2 id="forecastGrowth">Loading...</h2>
+            <span class="kpi-subtitle">
+                Compared with 2025
+            </span>
+        </div>
+    </div>
+
+
+    <div class="kpi-card">
+        <div class="kpi-icon">AI</div>
+
+        <div class="kpi-content">
+            <span class="kpi-label">Selected Model</span>
+            <h2 id="selectedModel">Loading...</h2>
+            <span class="kpi-subtitle">
+                Best tested forecasting model
+            </span>
+        </div>
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     FORECAST CHART
+===================================================== -->
+
+<div class="chart-card">
+
+    <div class="chart-header">
+        <div>
+            <h2>Monthly Expense Forecast — 2026</h2>
+
+            <p>
+                Forecast generated using the selected
+                machine learning model.
+            </p>
+        </div>
+    </div>
+
+    <div
+        id="forecastChart"
+        class="chart-container">
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     FORECAST TABLE
+===================================================== -->
+
+<div class="chart-card">
+
+    <div class="chart-header">
+        <div>
+            <h2>2026 Monthly Forecast</h2>
+
+            <p>
+                Projected expense for each month.
+            </p>
+        </div>
+    </div>
+
+
+    <div class="table-wrapper">
+
+        <table class="data-table">
+
+            <thead>
+                <tr>
+                    <th>Month</th>
+                    <th>Forecast Expense</th>
+                </tr>
+            </thead>
+
+            <tbody id="forecastTableBody">
+
+                <tr>
+                    <td colspan="2">
+                        Loading forecast data...
+                    </td>
+                </tr>
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     MODEL COMPARISON
+===================================================== -->
+
+<div class="chart-card">
+
+    <div class="chart-header">
+        <div>
+            <h2>Forecasting Model Comparison</h2>
+
+            <p>
+                Comparison of the tested forecasting approaches
+                using MAE and RMSE.
+            </p>
+        </div>
+    </div>
+
+
+    <div class="table-wrapper">
+
+        <table class="data-table">
+
+            <thead>
+                <tr>
+                    <th>Model</th>
+                    <th>MAE</th>
+                    <th>RMSE</th>
+                </tr>
+            </thead>
+
+            <tbody id="modelComparisonBody">
+
+                <tr>
+                    <td colspan="3">
+                        Loading model results...
+                    </td>
+                </tr>
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     METHODOLOGY
+===================================================== -->
+
+<div class="section-title">
+    <h2>Forecasting Methodology</h2>
+</div>
+
+
+<div class="insight-grid">
+
+    <div class="insight-card">
+
+        <div class="insight-icon">
+            📊
+        </div>
+
+        <div>
+
+            <h3>Historical Data</h3>
+
+            <p>
+                Monthly expense data from January 2021
+                through December 2025 was used for forecasting.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="insight-card">
+
+        <div class="insight-icon">
+            🔄
+        </div>
+
+        <div>
+
+            <h3>Time-Series Features</h3>
+
+            <p>
+                Lag features, rolling averages, month and
+                quarter information were used as model inputs.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="insight-card">
+
+        <div class="insight-icon">
+            🤖
+        </div>
+
+        <div>
+
+            <h3>Machine Learning</h3>
+
+            <p>
+                Baseline, Random Forest and Gradient Boosting
+                approaches were evaluated.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="insight-card">
+
+        <div class="insight-icon">
+            🎯
+        </div>
+
+        <div>
+
+            <h3>Model Evaluation</h3>
+
+            <p>
+                Mean Absolute Error and Root Mean Squared Error
+                were used to compare model performance.
+            </p>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     KEY INSIGHTS
+===================================================== -->
+
+<div class="section-title">
+    <h2>Forecast Insights</h2>
+</div>
+
+
+<div class="insight-grid">
+
+    <div class="insight-card">
+
+        <div class="insight-icon">
+            📈
+        </div>
+
+        <div>
+
+            <h3>Expense Trend</h3>
+
+            <p>
+                The forecast provides a monthly view of expected
+                expenses throughout 2026.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="insight-card">
+
+        <div class="insight-icon">
+            💡
+        </div>
+
+        <div>
+
+            <h3>Decision Support</h3>
+
+            <p>
+                Forecasted expenses can support budgeting,
+                resource planning and financial decision-making.
+            </p>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}
+
+
+{% block scripts %}
+
+<script src="{{ url_for('static', filename='js/forecast.js') }}?v=4"></script>
+
+{% endblock %}
